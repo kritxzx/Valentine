@@ -27,6 +27,11 @@
             flex-direction: column;
             align-items: center;
         }
+        .hearts {
+            font-size: 2rem;
+            color: red;
+            margin-bottom: 10px;
+        }
         h1 {
             color: #d63333;
             font-size: 2rem;
@@ -60,6 +65,7 @@
 </head>
 <body>
     <div class="container">
+        <div class="hearts" id="hearts">❤️❤️❤️❤️❤️</div>
         <h1>Will you be my Valentine?</h1>
         <div class="buttons">
             <button id="yes">Yes</button>
@@ -71,19 +77,20 @@
     <script>
         let yesButton = document.getElementById("yes");
         let noButton = document.getElementById("no");
+        let heartsContainer = document.getElementById("hearts");
         let clickCount = 0;
         let messages = [
             "เราว่าเทอกดผิดน้าา",
             "อย่าให้มีครั้งที่ 3",
-            "ครั้งที่ 4 นี่ไม่ควรละ",
-            "เหลือแค่นี้ยังจะกด"
+            "ครั้งที่ 4 นี่ไม่ควรนะะ",
+            "เหลือแค่นี้ยังจะกดอีกกกกก"
         ];
         
         noButton.addEventListener("click", function() {
             clickCount++;
             
             if (clickCount >= 5) {
-                alert("ปุ่มหายยังจะกดอีก 🥲");
+                alert("กลับไปคิดใหม่เลยยยยย 🥲🥲");
                 location.reload();
                 return;
             }
@@ -111,6 +118,8 @@
                 noButton.style.width = (noWidth - 20) + "px";
                 noButton.style.height = (noHeight - 15) + "px";
             }
+            
+            heartsContainer.innerHTML = "❤️".repeat(5 - clickCount);
         });
 
         yesButton.addEventListener("click", function() {
