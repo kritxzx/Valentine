@@ -55,24 +55,28 @@
     <img class="cat-img" src="catcute.jpeg" alt="Cute Cat">
 
     <script>
-        let yesButton = document.getElementById("yes");
-        let noButton = document.getElementById("no");
-        
-        noButton.addEventListener("mousedown", function() {
-            let x = Math.random() * (window.innerWidth - 100);
-            let y = Math.random() * (window.innerHeight - 100);
-            this.style.left = x + "px";
-            this.style.top = y + "px";
-            
-            let currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
-            yesButton.style.fontSize = (currentSize + 5) + "px";
-            yesButton.style.padding = (parseFloat(window.getComputedStyle(yesButton).padding) + 5) + "px";
-        });
+    let yesButton = document.getElementById("yes");
+    let noButton = document.getElementById("no");
+    
+    noButton.addEventListener("mousedown", function() {
+        let maxX = window.innerWidth - noButton.offsetWidth - 20;
+        let maxY = window.innerHeight - noButton.offsetHeight - 20;
 
-        yesButton.addEventListener("click", function() {
-            alert("Yay! 🎉 Happy Valentine's Day! 💖");
-        });
-    </script>
+        let x = Math.max(10, Math.min(Math.random() * maxX, maxX));
+        let y = Math.max(10, Math.min(Math.random() * maxY, maxY));
+
+        this.style.left = x + "px";
+        this.style.top = y + "px";
+
+        let currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+        yesButton.style.fontSize = (currentSize + 5) + "px";
+        yesButton.style.padding = (parseFloat(window.getComputedStyle(yesButton).padding) + 5) + "px";
+    });
+
+    yesButton.addEventListener("click", function() {
+        alert("Yay! 🎉 Happy Valentine's Day! 💖");
+    });
+</script>
 
 </body>
 </html>
