@@ -21,16 +21,28 @@
             background-color: #ffe6e6;
             font-family: Arial, sans-serif;
             text-align: center;
+            position: relative;
         }
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
         }
         .hearts {
             font-size: 2rem;
             color: red;
             margin-bottom: 10px;
+        }
+        .heart-animation {
+            position: absolute;
+            font-size: 10rem;
+            color: red;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
         }
         h1 {
             color: #d63333;
@@ -73,25 +85,31 @@
         </div>
         <img class="cat-img" src="catcute.jpeg" alt="Cute Cat">
     </div>
+    <div class="heart-animation" id="heartAnimation">💔</div>
 
     <script>
         let yesButton = document.getElementById("yes");
         let noButton = document.getElementById("no");
         let heartsContainer = document.getElementById("hearts");
+        let heartAnimation = document.getElementById("heartAnimation");
         let clickCount = 0;
         let messages = [
             "เราว่าเทอกดผิดน้าา",
             "อย่าให้มีครั้งที่ 3",
-            "ครั้งที่ 4 นี่ไม่ควรนะะ",
-            "เหลือแค่นี้ยังจะกดอีกกกกก"
+            "ครั้งที่ 4 นี่ไม่ควรละ",
+            "เหลือแค่นี้ยังจะกด"
         ];
         
         noButton.addEventListener("click", function() {
             clickCount++;
             
             if (clickCount >= 5) {
-                alert("กลับไปคิดใหม่เลยยยยย 🥲🥲");
-                location.reload();
+                heartAnimation.style.transform = "translate(-50%, -50%) scale(1)";
+                heartAnimation.style.opacity = "1";
+                setTimeout(() => {
+                    alert("คิดใหม่ได้น้าาาา 😊");
+                    location.reload();
+                }, 1000);
                 return;
             }
             
