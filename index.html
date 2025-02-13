@@ -14,7 +14,7 @@
         }
         h1 {
             color: #d63333;
-            font-size: 2rem;
+            font-size: 50px;
         }
         .buttons {
             margin-top: 20px;
@@ -25,11 +25,12 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            margin: 10px;
+            margin-top: 100px;
         }
         #yes {
             background-color: #28a745;
             color: white;
+            transition: all 0.2s ease-in-out;
         }
         #no {
             background-color: #dc3545;
@@ -37,7 +38,7 @@
             position: absolute;
         }
         .cat-img {
-            margin-top: 20px;
+            margin-top: 100px;
             width: 200px;
         }
     </style>
@@ -54,15 +55,24 @@
     <img class="cat-img" src="catcute.jpeg" alt="Cute Cat">
 
     <script>
-        document.getElementById("yes").addEventListener("click", function() {
+        let yesButton = document.getElementById("yes");
+        let noButton = document.getElementById("no");
+        let yesSize = 1;
+        
+        yesButton.addEventListener("click", function() {
             alert("Yay! 🎉 Happy Valentine's Day! 💖");
         });
 
-        document.getElementById("no").addEventListener("mouseover", function() {
+        noButton.addEventListener("mouseover", function() {
             let x = Math.random() * (window.innerWidth - 100);
             let y = Math.random() * (window.innerHeight - 100);
             this.style.left = x + "px";
             this.style.top = y + "px";
+        });
+
+        noButton.addEventListener("click", function() {
+            yesSize += 0.2; 
+            yesButton.style.transform = `scale(${yesSize})`;
         });
     </script>
 
