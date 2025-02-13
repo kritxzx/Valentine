@@ -82,8 +82,10 @@
         let noButton = document.getElementById("no");
         
         noButton.addEventListener("mousedown", function() {
-            let x = Math.random() * (window.innerWidth - 100);
-            let y = Math.random() * (window.innerHeight - 100);
+            let maxX = window.innerWidth - this.offsetWidth - 20; // ขอบข้าง
+            let maxY = window.innerHeight - this.offsetHeight - 100; // ไม่ให้เลยขอบบนมากไป
+            let x = Math.random() * maxX;
+            let y = Math.random() * maxY;
             this.style.left = x + "px";
             this.style.top = y + "px";
             
