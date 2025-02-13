@@ -23,44 +23,37 @@
             text-align: center;
         }
         .container {
-            width: 100%;
-            height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
         }
         h1 {
             color: #d63333;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin-bottom: 40px;
         }
         .buttons {
-            position: relative;
-            width: 100%;
             display: flex;
-            justify-content: center;
+            gap: 20px;
         }
         button {
-            font-size: 1.2rem;
-            padding: 10px 20px;
+            font-size: 2rem;
+            padding: 20px 40px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            margin: 10px;
+            transition: all 0.3s ease;
         }
         #yes {
             background-color: #28a745;
             color: white;
-            transition: all 0.3s ease;
         }
         #no {
             background-color: #dc3545;
             color: white;
-            position: absolute;
         }
         .cat-img {
-            margin-top: 20px;
+            margin-top: 35px;
             width: 150px;
         }
     </style>
@@ -68,30 +61,51 @@
 <body>
     <div class="container">
         <h1>Will you be my Valentine?</h1>
-        
         <div class="buttons">
             <button id="yes">Yes</button>
             <button id="no">No</button>
         </div>
-        
         <img class="cat-img" src="catcute.jpeg" alt="Cute Cat">
     </div>
 
     <script>
         let yesButton = document.getElementById("yes");
         let noButton = document.getElementById("no");
+        let clickCount = 0;
+        let messages = [
+            "เราว่าเทอกดผิดน้าา",
+            "อย่าให้มีครั้งที่ 3",
+            "ครั้งที่ 4 นี่ไม่ควรละ",
+            "เหลือแค่นี้ยังจะกด"
+        ];
         
-        noButton.addEventListener("mousedown", function() {
-            let maxX = window.innerWidth - this.offsetWidth - 20; // ขอบข้าง
-            let maxY = window.innerHeight - this.offsetHeight - 100; // ไม่ให้เลยขอบบนมากไป
-            let x = Math.random() * maxX;
-            let y = Math.random() * maxY;
-            this.style.left = x + "px";
-            this.style.top = y + "px";
+        noButton.addEventListener("click", function() {
+            clickCount++;
             
-            let currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
-            yesButton.style.fontSize = (currentSize + 5) + "px";
-            yesButton.style.padding = (parseFloat(window.getComputedStyle(yesButton).padding) + 5) + "px";
+            if (clickCount >= 5) {
+                alert("คิดใหม่ได้น้าาาา 😊");
+                location.reload();
+                return;
+            }
+            
+            alert(messages[clickCount - 1]);
+            
+            let yesSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+            let noSize = parseFloat(window.getComputedStyle(noButton).fontSize);
+            let yesPadding = parseFloat(window.getComputedStyle(yesButton).padding);
+            let noPadding = parseFloat(window.getComputedStyle(noButton).padding);
+            let noWidth = parseFloat(window.getComputedStyle(noButton).width);
+            let noHeight = parseFloat(window.getComputedStyle(noButton).height);
+            
+            yesButton.style.fontSize = (yesSize + 5) + "px";
+            yesButton.style.padding = (yesPadding + 5) + "px";
+            
+            if (noSize > 5) {
+                noButton.style.fontSize = (noSize - 7) + "px";
+                noButton.style.padding = (noPadding - 7) + "px";
+                noButton.style.width = (noWidth - 15) + "px";
+                noButton.style.height = (noHeight - 10) + "px";
+            }
         });
 
         yesButton.addEventListener("click", function() {
