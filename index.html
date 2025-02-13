@@ -8,9 +8,8 @@
         body {
             text-align: center;
             background-color: #ffe6e6;
-            font-family: Arial, sans-serif;
-            margin-top: 50px;
-            overflow: hidden; /* ป้องกันการเลื่อนหน้าจอ */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -23,41 +22,38 @@
             margin-bottom: 20px;
         }
         .buttons {
+            position: relative;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            position: relative;
+            gap: 15px;
         }
         button {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             padding: 12px 24px;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
-            margin: 10px;
             transition: all 0.3s ease;
         }
         #yes {
             background-color: #28a745;
             color: white;
-            font-size: 1.5rem;
-            position: relative;
         }
         #no {
             background-color: #dc3545;
             color: white;
             position: absolute;
-            top: 80px; /* อยู่ข้างล่างปุ่ม Yes */
+            left: 50%;
+            transform: translateX(-50%);
         }
         .cat-img {
-            margin-top: 30px;
-            width: 200px;
+            margin-top: 20px;
+            width: 150px;
         }
     </style>
 </head>
 <body>
-
-    <h1>Will you be my Valentine?</h1>
+    <h1>Will you be my Valentine? 💖</h1>
     
     <div class="buttons">
         <button id="yes">Yes</button>
@@ -69,39 +65,21 @@
     <script>
         let yesButton = document.getElementById("yes");
         let noButton = document.getElementById("no");
-
-        let noClickCount = 0; // นับจำนวนครั้งที่กดปุ่ม No
-        const maxNoClicks = 17; // จำกัดให้กด No ได้ 17 ครั้ง
-
-        noButton.addEventListener("mousedown", function() {
-            if (noClickCount >= maxNoClicks) {
-                alert("ไปเริ่มคิดใหม่อีกทีนะคะ~");
-                location.reload(); // รีหน้าเว็บ
-                return;
-            }
-
-            // ใช้ viewport width (vw) และ viewport height (vh) เพื่อรองรับมือถือ
-            let maxX = window.innerWidth * 0.9 - noButton.offsetWidth;
-            let maxY = window.innerHeight * 0.8 - noButton.offsetHeight;
-
-            let x = Math.max(10, Math.min(Math.random() * maxX, maxX));
-            let y = Math.max(10, Math.min(Math.random() * maxY, maxY));
-
+        
+        noButton.addEventListener("mouseenter", function() {
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 200);
             this.style.left = x + "px";
             this.style.top = y + "px";
-
-            // ทำให้ปุ่ม Yes ใหญ่ขึ้นเมื่อกด No
+            
             let currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
-            yesButton.style.fontSize = (currentSize + 5) + "px";
-            yesButton.style.padding = (parseFloat(window.getComputedStyle(yesButton).padding) + 5) + "px";
-
-            noClickCount++; // เพิ่มจำนวนครั้งที่กดปุ่ม No
+            yesButton.style.fontSize = (currentSize + 3) + "px";
+            yesButton.style.padding = (parseFloat(window.getComputedStyle(yesButton).padding) + 3) + "px";
         });
 
         yesButton.addEventListener("click", function() {
             alert("Yay! 🎉 Happy Valentine's Day! 💖");
         });
     </script>
-
 </body>
 </html>
