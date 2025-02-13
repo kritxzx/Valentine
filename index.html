@@ -30,7 +30,7 @@
         h1 {
             color: #d63333;
             font-size: 2rem;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
         .buttons {
             display: flex;
@@ -53,7 +53,7 @@
             color: white;
         }
         .cat-img {
-            margin-top: 35px;
+            margin-top: 20px;
             width: 150px;
         }
     </style>
@@ -100,11 +100,16 @@
             yesButton.style.fontSize = (yesSize + 5) + "px";
             yesButton.style.padding = (yesPadding + 5) + "px";
             
-            if (noSize > 5) {
-                noButton.style.fontSize = (noSize - 7) + "px";
-                noButton.style.padding = (noPadding - 7) + "px";
-                noButton.style.width = (noWidth - 15) + "px";
-                noButton.style.height = (noHeight - 10) + "px";
+            if (clickCount === 1) {
+                noButton.style.fontSize = (noSize / 2) + "px";
+                noButton.style.padding = (noPadding / 2) + "px";
+                noButton.style.width = (noWidth / 2) + "px";
+                noButton.style.height = (noHeight / 2) + "px";
+            } else {
+                noButton.style.fontSize = (noSize - 10) + "px";
+                noButton.style.padding = (noPadding - 10) + "px";
+                noButton.style.width = (noWidth - 20) + "px";
+                noButton.style.height = (noHeight - 15) + "px";
             }
         });
 
