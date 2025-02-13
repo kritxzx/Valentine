@@ -95,9 +95,9 @@
         let clickCount = 0;
         let messages = [
             "เราว่าเทอกดผิดน้าา",
-            "อย่าให้มีครั้งที่ 3",
-            "ครั้งที่ 4 นี่ไม่ควรละ",
-            "เหลือแค่นี้ยังจะกด"
+            "อย่าให้มีครั้งที่ 3 !!!!",
+            "ครั้งที่ 4 นี่ไม่ควรนะะ",
+            "เหลือแค่นี้ยังจะกดอีกกกก"
         ];
         
         noButton.addEventListener("click", function() {
@@ -107,7 +107,7 @@
                 heartAnimation.style.transform = "translate(-50%, -50%) scale(1)";
                 heartAnimation.style.opacity = "1";
                 setTimeout(() => {
-                    alert("คิดใหม่ได้น้าาาา 😊");
+                    alert("กลับไปกดไอเขียวววววเลย 🥲");
                     location.reload();
                 }, 1000);
                 return;
@@ -116,32 +116,26 @@
             alert(messages[clickCount - 1]);
             
             let yesSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
-            let noSize = parseFloat(window.getComputedStyle(noButton).fontSize);
             let yesPadding = parseFloat(window.getComputedStyle(yesButton).padding);
-            let noPadding = parseFloat(window.getComputedStyle(noButton).padding);
-            let noWidth = parseFloat(window.getComputedStyle(noButton).width);
-            let noHeight = parseFloat(window.getComputedStyle(noButton).height);
             
             yesButton.style.fontSize = (yesSize + 5) + "px";
             yesButton.style.padding = (yesPadding + 5) + "px";
             
-            if (clickCount === 1) {
-                noButton.style.fontSize = (noSize / 2) + "px";
-                noButton.style.padding = (noPadding / 2) + "px";
-                noButton.style.width = (noWidth / 2) + "px";
-                noButton.style.height = (noHeight / 2) + "px";
-            } else {
-                noButton.style.fontSize = (noSize - 10) + "px";
-                noButton.style.padding = (noPadding - 10) + "px";
-                noButton.style.width = (noWidth - 20) + "px";
-                noButton.style.height = (noHeight - 15) + "px";
-            }
+            let noSize = parseFloat(window.getComputedStyle(noButton).fontSize);
+            let noPadding = parseFloat(window.getComputedStyle(noButton).padding);
+            let noWidth = parseFloat(window.getComputedStyle(noButton).width);
+            let noHeight = parseFloat(window.getComputedStyle(noButton).height);
+            
+            noButton.style.fontSize = Math.max(noSize * 0.5, 8) + "px";
+            noButton.style.padding = Math.max(noPadding * 0.5, 3) + "px";
+            noButton.style.width = Math.max(noWidth * 0.6, 30) + "px";
+            noButton.style.height = Math.max(noHeight * 0.6, 20) + "px";
             
             heartsContainer.innerHTML = "❤️".repeat(5 - clickCount);
         });
 
         yesButton.addEventListener("click", function() {
-            alert("Yay! 🎉 Happy Valentine's Day! 💖");
+            alert("Yay! 🎉 Happy Valentine's Day! babe 💖");
         });
     </script>
 </body>
